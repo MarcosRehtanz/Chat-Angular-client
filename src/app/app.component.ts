@@ -14,20 +14,29 @@ export class AppComponent {
   title = 'Socket';
 
   socket = inject(WebSocketService)
+  inputMessage = ''
+  chat = this.socket.chat
 
-  socketConnect() {
-    this.socket.connect()
+  changeInputMessage(event: any) {
+
+    if (event.code === "Enter") this.sendMessage()
+    else this.inputMessage = event.target.value;
   }
-  socketDisconnect() {
-    this.socket.disconnect()
-  }
-  socketEmit() {
+
+  sendMessage() {
     this.socket.sendMessage({
-      message: "Hola"
+      message: this.inputMessage,
+      author: `${this.socket.ioSocket.id}`,
     })
+    this.inputMessage = ''
   }
-  socketHi(){
+
+  socketHi() {
     this.socket.emit('hi')
+  }
+
+  ngOnInit() {
+    this.socket.socketOn()
   }
 
 }

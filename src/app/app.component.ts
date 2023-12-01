@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { WebSocketService } from './Services/web-socket.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,22 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Socket';
+
+  socket = inject(WebSocketService)
+
+  socketConnect() {
+    this.socket.connect()
+  }
+  socketDisconnect() {
+    this.socket.disconnect()
+  }
+  socketEmit() {
+    this.socket.sendMessage({
+      message: "Hola"
+    })
+  }
+  socketHi(){
+    this.socket.emit('hi')
+  }
+
 }

@@ -25,7 +25,7 @@
 </svg> -->
 
 
-<div class="pill-group">
+<!-- <div class="pill-group">
   <button class="pill" (click)="socket.connect()">Connect</button><br />
   <button class="pill" (click)="socket.disconnect()">Disconnect</button><br />
   <button class="pill" (click)="socketHi()">Hi</button><br />
@@ -33,10 +33,11 @@
 
 <input (keyup)="changeInputMessage($event)" [value]="inputMessage"/>
 <button class="pill" (click)="sendMessage()">Emit Message</button><br />
-<h1>{{inputMessage}}</h1>
-<ul>
+<h1>{{inputMessage}}</h1> -->
+<app-chat />
+<!-- <ul>
   <li *ngFor="let c of socket.chat" >{{c.message}}</li>
-</ul>
+</ul> -->
 
 
 <router-outlet></router-outlet>

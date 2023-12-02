@@ -10,7 +10,7 @@ export class WebSocketService extends Socket {
     message: string
     author:string
   }[] = []
-  @Output() outEven: EventEmitter<any> = new EventEmitter();
+
   constructor() {
     super({
       url: 'http://localhost:3000',
@@ -23,7 +23,6 @@ export class WebSocketService extends Socket {
       this.chat = [...this.chat, s]
       console.log(s);
       console.log(this.chat);
-      
     })
   }
 

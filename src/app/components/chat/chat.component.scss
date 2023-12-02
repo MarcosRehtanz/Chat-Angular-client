@@ -1,3 +1,19 @@
+:root {
+    --orange: #efa100;
+    --c-carmesi-0: #610000;
+    --c-carmesi-1: #9c0720;
+    --c-carmesi-2: #dc143c;
+    --c-carmesi-3: #f1666d;
+    --c-carmesi-4: #ff9ea2;
+
+    --c-burdeos-0: #62162f;
+    --c-burdeos-1: #96305a;
+    --c-burdeos-2: #ca678e;
+
+    --c-granate-0: #b03648;
+    --c-granate-1: #c85162;
+}
+
 @mixin center {
     position: absolute;
     top: 50%;
@@ -38,26 +54,15 @@
     transform: scale(1.2);
 }
 
-
 /*--------------------
   Chat
   --------------------*/
 .chat {
-    @include center;
-    width: 300px;
-    height: 80vh;
-    max-height: 500px;
-    font-family: Ubuntu, 'Helvetica Neue', 'Open Sans', sans-serif;
-    z-index: 2;
-    overflow: hidden;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
-    background: rgba(0, 0, 0, .5);
-    border-radius: 20px;
+    height: 100vh;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
+    justify-content: space-between;
 }
-
 
 /*--------------------
   Chat Title
@@ -66,10 +71,11 @@
     flex: 0 1 45px;
     position: relative;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.2);
+    background: #0f0f11d9;
     color: #fff;
     text-transform: uppercase;
     text-align: left;
+    margin: -2px;
     padding: 10px 10px 10px 50px;
 
     h1,
@@ -97,7 +103,8 @@
         overflow: hidden;
         margin: 0;
         padding: 0;
-        border: 2px solid rgba(255, 255, 255, 0.24);
+        background-color: #0f0f1179;
+        // border: 2px solid #610000;//rgba(255, 255, 255, 0.24);
 
         img {
             width: 100%;
@@ -126,11 +133,11 @@
         float: left;
         padding: 6px 10px 7px;
         border-radius: 10px 10px 10px 0;
-        background: rgba(0, 0, 0, .3);
-        margin: 8px 0;
+        background: linear-gradient(120deg, #248A52, #257287);
+        margin: 8px 8px;
         font-size: 11px;
         line-height: 1.4;
-        margin-left: 35px;
+        // margin-left: 5px;
         position: relative;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
 
@@ -145,7 +152,7 @@
             content: '';
             position: absolute;
             bottom: -6px;
-            border-top: 6px solid rgba(0, 0, 0, .3);
+            border-top: 6px solid #248A52;
             left: 0;
             border-right: 7px solid transparent;
         }
@@ -243,10 +250,10 @@
         resize: none;
         color: rgba(255, 255, 255, .7);
         font-size: 11px;
-        height: 17px;
+        min-height: 17px;
+        width: 100%;
         margin: 0;
-        padding-right: 20px;
-        width: 265px;
+        padding-right: 50px;
     }
 
     textarea:focus:-webkit-placeholder {

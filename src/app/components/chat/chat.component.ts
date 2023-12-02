@@ -20,9 +20,8 @@ export class ChatComponent {
   messages = this.socket.chat
 
   changeInputMessage(event: any) {
-    // if (event.code === "Enter") this.sendMessage()
-    // else this.inputMessage = event.target.value;
-    if (event.code !== "Enter") this.inputMessage = event.target.value;
+    if (event.code === "Enter") this.sendMessage()
+    else this.inputMessage = event.target.value;
   }
 
   sendMessage() {

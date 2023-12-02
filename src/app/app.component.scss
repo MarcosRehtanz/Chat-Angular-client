@@ -1,0 +1,31 @@
+.chat {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: min-content auto;
+}
+
+.rooms {
+    width: min-content;
+    height: 100%;
+    box-shadow: 0 5px 30px var(--color-0);
+    background-color: var(--color-1);
+    z-index: 3;
+}
+
+/*--------------------
+  Chat
+  --------------------*/
+.app-chat {
+    height: 100%;
+
+    font-family: Ubuntu, 'Helvetica Neue', 'Open Sans', sans-serif;
+    z-index: 2;
+    overflow: hidden;
+    background: var(--color-2);
+    // background: linear-gradient(45deg, #610000 0%, #ef9f00 100%);
+    
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}

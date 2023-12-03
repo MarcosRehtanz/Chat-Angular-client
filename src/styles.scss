@@ -1,16 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+body {
     margin: 0;
     padding: 0;
     background-color: #0f0f11;
 }
-:root{
+
+:root {
+    --color-shadow: #0f0f119f;
     --color-0: #0f0f11;
     --color-1: #161A30;
     --color-2: #31304D;
     --color-3: #B6BBC4;
     --color-4: #F0ECE5;
+    --color-msg-0: #940444;
+    --color-msg-075: #940564e6;
+    --color-msg-1: #5d0b53;
+    --color-msg-2: #3b0464;
+    --color-msg-3: #28045b;
+    --color-msg-4: #1c0454;
 }
-button:hover{
+
+* {
+    ::-webkit-scrollbar {
+        width: 12px;
+        /* width of the entire scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--color-1);
+        /* color of the tracking area */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--color-msg-0), var(--color-msg-1));
+        /* color of the scroll thumb */
+        border-radius: 20px;
+        /* roundness of the scroll thumb */
+        border: 3px solid var(--color-1);
+        /* creates padding around scroll thumb */
+    }
+}
+
+// :root{
+//     --color-0: #940444 ;
+//     --color-1: #5d0b53 ;
+//     --color-2: #3b0464 ;
+//     --color-3: #28045b ;
+//     --color-4: #1c0454 ;
+// }
+button:hover {
     cursor: pointer;
 }

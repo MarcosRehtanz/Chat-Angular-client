@@ -7,12 +7,12 @@
         </figure>
     </div>
     <div class="messages">
-        <div class="messages-content">
+        <div class="messages-content" #messages>
 
             <ng-container *ngFor="let message of socket.chat">
                 <ng-container [ngSwitch]="message.author">
                     <ng-container *ngSwitchCase="fullName">
-                        <app-message class="message message-personal" [message]="message" />
+                        <app-message class="message new message-personal" [message]="message" />
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                         <app-message class="message new" [message]="message" />

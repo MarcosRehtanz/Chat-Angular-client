@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { MessageComponent } from '../message/message.component';
 import { CommonModule } from '@angular/common';
 import { WebSocketService } from '../../Services/web-socket.service';
@@ -12,15 +12,14 @@ import { faker } from '@faker-js/faker';
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
-  
+
   fullName = faker.person.fullName();
 
   socket = inject(WebSocketService)
   inputMessage = ''
-  messages = this.socket.chat
 
   changeInputMessage(event: any) {
-    if (event.code === "Enter") this.sendMessage()
+    if (event.code === "Enter" && this.inputMessage.trim() !== '') this.sendMessage()
     else this.inputMessage = event.target.value;
   }
 
@@ -30,13 +29,21 @@ export class ChatComponent {
       author: `${this.fullName}`,
     })
     this.inputMessage = ''
+    
   }
 
   socketHi() {
     this.socket.emit('hi')
   }
 
-  ngOnInit() {
-    this.socket.socketOn()
+  @ViewChild('messages') messagesContent!: ElementRef<any>;
+  
+  ngAfterViewInit(){
+
+    this.socket.socketOn();
+    // this.socket.socketOn((id:number)=>{
+    //   this.messagesContent.nativeElement.scroll
+    // })
   }
+
 }

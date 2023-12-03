@@ -8,7 +8,7 @@ export class WebSocketService extends Socket {
 
   chat: {
     message: string
-    author:string
+    author: string
   }[] = []
 
   constructor() {
@@ -18,15 +18,13 @@ export class WebSocketService extends Socket {
     })
   }
 
-  socketOn(){
-    this.on('chat', (s: any)=>{
+  socketOn() {
+    this.on('chat', (s: any) => {
       this.chat = [...this.chat, s]
-      console.log(s);
-      console.log(this.chat);
     })
   }
 
-  sendMessage(msg: any){
+  sendMessage(msg: any) {
     this.emit('message', msg)
   }
 

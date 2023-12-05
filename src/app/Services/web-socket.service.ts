@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, NgModule, Output } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class WebSocketService extends Socket {
 
   constructor() {
     super({
-      url: 'http://localhost:3000',
+      url: 'https://chat-socket-ode7.onrender.com/',
       options: {}
     })
   }

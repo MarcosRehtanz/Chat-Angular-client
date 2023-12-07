@@ -1,6 +1,9 @@
 <div class="chat">
   <div class="rooms">
-    <app-room *ngFor="let room of rooms" [room]="room" />
+    <app-room [room]="generalRoom" ></app-room>
+    <app-room *ngFor="let room of rooms$ | async" [room]="room" />
+    <button (click)="addRoom()" >crear sala</button>
+    <button>unirse a sala</button>
   </div>
   <div class="app-chat">
     <app-chat />

@@ -1,21 +1,30 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Socket } from 'ngx-socket-io';
+import { Room } from '../models/room.model';
+import { Observable } from 'rxjs';
 
+
+interface Chat {
+  message: string
+  author: string
+}[]
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService extends Socket {
 
-  chat: {
-    message: string
-    author: string
-  }[] = []
+  chat: Chat[] = []
 
-  constructor() {
+  nameChat$: Observable<string>
+  constructor(
+    private store: Store<{ chat: Room }>
+  ) {
     super({
       url: 'https://chat-socket-ode7.onrender.com/',
       options: {}
     })
+    this.nameChat$ = store.select(({ chat }) => chat.name)
   }
 
   socketOn() {
@@ -24,8 +33,10 @@ export class WebSocketService extends Socket {
     })
   }
 
-  sendMessage(msg: any) {
-    this.emit('message', msg)
+  sendMessage(msg: Chat) {
+    this.nameChat$.subscribe(s => {
+      this.emit('message', {...msg, message: s + msg.message})
+    })
   }
 
 }

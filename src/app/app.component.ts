@@ -23,9 +23,16 @@ export class AppComponent {
     id: '',
   }
   
+  id = ''
+  id$: Observable<string>
   rooms$: Observable<Room[]>
-  constructor(private store: Store<{ rooms: Room[] }>) {
+  constructor(private store: Store<{ rooms: Room[], chat: Room }>) {
     this.rooms$ = store.select('rooms')
+    this.id$ = store.select(({chat})=> chat.id)
+  }
+
+  ngOnInit(){
+    this.id$.subscribe( s => this.id = s)
   }
 
   addRoom() {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, inject } from '@angular/core';
 import { MessageComponent } from '../message/message.component';
 import { CommonModule } from '@angular/common';
 import { WebSocketService } from '../../Services/web-socket.service';
@@ -6,6 +6,8 @@ import { faker } from '@faker-js/faker';
 import { Observable } from 'rxjs';
 import { Room } from '../../models/room.model';
 import { Store } from '@ngrx/store';
+import { removeRoom } from '../../store/rooms/rooms.action';
+import { useRoom } from '../../store/chat/chat.action';
 
 @Component({
   selector: 'app-chat',
@@ -18,16 +20,19 @@ export class ChatComponent {
 
   name$: Observable<string>
   room$: Observable<string>
-  id$: Observable<string>
-  
+  @Input() byId!: string 
+
   constructor(
-    private store: Store<{chat: Room}>
-  ){
-    this.name$ = store.select((state)=> state.chat.name)
-    this.room$ = store.select((state)=> state.chat.room)
-    this.id$ = store.select((state)=> state.chat.id)
+    private store: Store<{ chat: Room }>
+  ) {
+    this.name$ = store.select((state) => state.chat.name)
+    this.room$ = store.select((state) => state.chat.room)
   }
 
+  closeRoom() {
+    this.store.dispatch(useRoom({}))
+    this.store.dispatch(removeRoom({ byId: this.byId }))
+  }
 
 
   fullName = faker.person.fullName();

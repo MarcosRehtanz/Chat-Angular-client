@@ -1,11 +1,7 @@
-<div class="chat-title"> 
-    <button (click)="useRoom(room.id.length ? room : undefined)">
-        <h1>{{room.name}}</h1>
-        <h2>{{room.room}}</h2>
-    </button>
+<button class="chat-title" (click)="useRoom(room.id.length ? room : undefined)">
+    <h1>{{room.name}}</h1>
+    <h2>{{room.room}}</h2>
     <figure class="avatar">
         <img src="../../../favicon.ico" alt="">
     </figure>
-
-    <button *ngIf="room.id.length" (click)="removeRoom(room.id)">X</button>
-</div>
+</button>

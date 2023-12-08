@@ -19,8 +19,8 @@ export class WebSocketService extends Socket {
     private store: Store<{ chat: ChatRoom }>
   ) {
     super({
-      // url: 'https://chat-socket-ode7.onrender.com/',
-      url: 'http://localhost:3000/',
+      url: 'https://chat-socket-ode7.onrender.com/',
+      // url: 'http://localhost:3000/',
       options: {}
     })
     this.chat$ = store.select('chat')

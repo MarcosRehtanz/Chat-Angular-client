@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ChatComponent } from './components/chat/chat.component';
 import { RoomComponent } from './components/room/room.component';
-import { Room } from './models/room.model';
 
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addRoom} from './store/rooms/rooms.action';
+import { addRoom, joinToRoom } from './store/rooms/rooms.action';
+import { ChatRoom, Room } from './models';
 
 @Component({
   selector: 'app-root',
@@ -22,20 +22,20 @@ export class AppComponent {
     room: 'angular',
     id: '',
   }
-  
-  id = ''
-  id$: Observable<string>
-  rooms$: Observable<Room[]>
-  constructor(private store: Store<{ rooms: Room[], chat: Room }>) {
-    this.rooms$ = store.select('rooms')
-    this.id$ = store.select(({chat})=> chat.id)
-  }
 
-  ngOnInit(){
-    this.id$.subscribe( s => this.id = s)
+  rooms$: Observable<ChatRoom[]>
+  constructor(private store: Store<{ rooms: ChatRoom[], chat: ChatRoom }>) {
+    this.rooms$ = store.select('rooms')
   }
 
   addRoom() {
-    this.store.dispatch(addRoom())
+    const nameRoom = prompt('Coloquele un nombre a la Sala')
+    if (nameRoom)
+      this.store.dispatch(addRoom({ nameRoom }))
+  }
+  joinToRoom() {
+    const idRoom = prompt('Id de la sala')
+    if (idRoom)
+      this.store.dispatch(joinToRoom({ idRoom }))
   }
 }

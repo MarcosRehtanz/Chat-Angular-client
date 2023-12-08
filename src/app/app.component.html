@@ -1,12 +1,12 @@
 <div class="chat">
   <div class="rooms">
-    <app-room [room]="generalRoom" ></app-room>
+    <!-- <app-room [room]="generalRoom" ></app-room> -->
     <app-room *ngFor="let room of rooms$ | async" [room]="room" />
-    <button (click)="addRoom()" >crear sala</button>
-    <button>unirse a sala</button>
+    <button (click)="addRoom()">crear sala</button>
+    <button (click)="joinToRoom()">unirse a sala</button>
   </div>
   <div class="app-chat">
-    <app-chat [byId]="id" />
+    <app-chat />
   </div>
 </div>
 

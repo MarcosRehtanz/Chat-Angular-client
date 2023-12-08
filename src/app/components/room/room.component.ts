@@ -18,7 +18,7 @@ export class RoomComponent {
 
   useId$: Observable<string>
   constructor(
-    private store: Store<{ rooms: Room[], chat: Room }>
+    private store: Store<{ chat: Room }>
   ) {
     this.useId$ = store.select(({ chat }) => chat.id)
   }

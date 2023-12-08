@@ -1,7 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { Room } from "../../models/room.model";
+import { Room } from "../../models";
 import { useRoom } from "./chat.action";
-
 
 export const initialState: Room = {
     name: 'Chat Grupal',

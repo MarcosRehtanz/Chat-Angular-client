@@ -5,7 +5,7 @@
         <figure class="avatar">
             <img src="../../../favicon.ico" alt="">
         </figure>
-        <!-- <button (click)="closeRoom()">Cerrar Sala</button> -->
+        <button *ngIf="(byId !== '')" (click)="removeRoom()">Cerrar Sala</button>
     </div>
     <div class="messages">
         <div class="messages-content" #messages>

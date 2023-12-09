@@ -22,21 +22,31 @@ export class ChatComponent {
   room$: Observable<string>
   id$: Observable<string>
   chat$: Observable<ChatRoom>
+  rooms$: Observable<ChatRoom[]>
   // @Input() byId!: string 
   byId = ''
+  rooms: ChatRoom[] = []
 
   constructor(
-    private store: Store<{ room: ChatRoom[], chat: ChatRoom }>
+    private store: Store<{ rooms: ChatRoom[], chat: ChatRoom }>
   ) {
+    this.rooms$ = store.select('rooms')
     this.name$ = store.select((state) => state.chat.name)
     this.room$ = store.select((state) => state.chat.room)
     this.id$ = store.select((state) => state.chat.id)
     this.chat$ = store.select('chat')
   }
 
-  closeRoom() {
-    this.store.dispatch(useRoom({}))
+  removeRoom() {
+    const room = this.rooms.filter(r => r.id != this.byId)[0] || {
+      chat: [],
+      name: 'Sala General',
+      room: 'angular',
+      id: '',
+    }
+
     this.store.dispatch(removeRoom({ byId: this.byId }))
+    this.store.dispatch(useRoom({ room }))
   }
 
   fullName = faker.person.fullName();
@@ -58,12 +68,13 @@ export class ChatComponent {
       this.inputMessage = ''
     }
   }
-  
+
   ngAfterViewInit() {
     this.socket.socketOn();
+    this.rooms$.subscribe((rooms) => {
+      this.rooms = rooms
+    })
     this.chat$.subscribe(({ id: idRoom, chat }) => {
-      console.log('idRoom', idRoom);
-      console.log('chat', chat);
 
       this.store.dispatch(addChat({
         chat: [...this.socket.chat],

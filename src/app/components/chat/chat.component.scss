@@ -69,13 +69,23 @@
 }
 
 /*--------------------
+  Chat header
+  --------------------*/
+.chat-header {
+    padding: 4px;
+    display: grid;
+    grid-template-columns: auto min-content;
+    background: #0f0f11d9;
+    align-items: center;
+}
+
+/*--------------------
   Chat Title
   --------------------*/
 .chat-title {
     flex: 0 1 45px;
     position: relative;
     z-index: 2;
-    background: #0f0f11d9;
     color: #fff;
     text-transform: uppercase;
     text-align: left;
@@ -117,13 +127,82 @@
     }
 }
 
+/*--------------------
+  Delete button
+  --------------------*/
+.delete-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+
+    .delete-svgIcon {
+        width: 10px;
+        transition-duration: 0.3s;
+
+        path {
+            fill: white;
+        }
+    }
+
+
+    &:hover {
+        width: 90px;
+        border-radius: 50px;
+        transition-duration: 0.3s;
+        background-color: rgb(255, 69, 69);
+        align-items: center;
+
+        .delete-svgIcon {
+            width: 10px;
+            transition-duration: 0.3s;
+            transform: translateY(60%);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+        &::before {
+            display: block;
+            padding-right: 10px;
+            font-size: 13px;
+            opacity: 1;
+            transform: translateY(0px);
+            transition-duration: 0.3s;
+        }
+    }
+
+    &::before {
+        display: none;
+        content: "Delete";
+        color: white;
+        transition-duration: 0.3s;
+        font-size: 2px;
+    }
+}
+
+/*--------------------
+  Messages
+  --------------------*/
 .messages {
     flex: 1 1 auto;
     color: rgba(255, 255, 255, 1);
     overflow-x: auto;
     position: relative;
     width: 100%;
-    
+
     & .messages-content {
         width: 100%;
         padding: 0 5% 5px 5%;
@@ -282,8 +361,7 @@
         transition: background .5s ease;
 
         &:hover {
-            @include bg-message()
-            // background: var(--color-msg-075);
+            @include bg-message() // background: var(--color-msg-075);
         }
     }
 }

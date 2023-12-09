@@ -1,12 +1,25 @@
 <div class="chat">
+  
   <div class="rooms">
     <!-- <app-room [room]="generalRoom" ></app-room> -->
     <app-room *ngFor="let room of rooms$ | async" [room]="room" />
-    <button (click)="addRoom()">crear sala</button>
-    <button (click)="joinToRoom()">unirse a sala</button>
+    @if (chatLenghts) {
+    <button (click)="addRoom()" class="roomButton">crear sala</button>
+    <button (click)="joinToRoom()" class="roomButton">unirse a sala</button>
+    }
   </div>
+
   <div class="app-chat">
+
+    @if (chatLenghts > 0){
     <app-chat />
+    } @else {
+    <div class="buttonCreate">
+      <button (click)="addRoom()" class="roomButton">crear sala</button>
+      <button (click)="joinToRoom()" class="roomButton">unirse a sala</button>
+    </div>
+    }
+
   </div>
 </div>
 

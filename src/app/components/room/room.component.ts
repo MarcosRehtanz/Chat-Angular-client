@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { removeRoom } from '../../store/rooms/rooms.action';
 import { useRoom } from '../../store/chat/chat.action';
 import { Observable } from 'rxjs';
+import { ChatRoom } from '../../models';
 
 @Component({
   selector: 'app-room',
@@ -14,7 +15,7 @@ import { Observable } from 'rxjs';
   styleUrl: './room.component.scss'
 })
 export class RoomComponent {
-  @Input() room!: Room
+  @Input() room!: ChatRoom
 
   useId$: Observable<string>
   constructor(
@@ -23,7 +24,7 @@ export class RoomComponent {
     this.useId$ = store.select(({ chat }) => chat.id)
   }
 
-  useRoom(room: Room | undefined) {
+  useRoom(room: ChatRoom | undefined) {
     this.store.dispatch(useRoom({ room }))
   }
 

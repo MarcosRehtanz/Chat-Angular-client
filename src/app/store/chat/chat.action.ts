@@ -1,4 +1,4 @@
 import { createAction, props } from "@ngrx/store";
-import { Room } from "../../models";
+import { ChatRoom, Room } from "../../models";
 
-export const useRoom = createAction('[UseRoom Component] UseRoom', props<{ room?: Room }>())
+export const useRoom = createAction('[UseRoom Component] UseRoom', props<{ room?: ChatRoom }>())

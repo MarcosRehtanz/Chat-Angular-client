@@ -1,8 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
-import { Room } from "../../models";
+import { ChatRoom } from "../../models";
 import { useRoom } from "./chat.action";
 
-export const initialState: Room = {
+export const initialState: ChatRoom = {
+    chat: [],
     name: 'Chat Grupal',
     room: 'Angular',
     id: '',

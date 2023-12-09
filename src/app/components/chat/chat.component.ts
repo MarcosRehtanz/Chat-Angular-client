@@ -58,11 +58,7 @@ export class ChatComponent {
       this.inputMessage = ''
     }
   }
-
-  socketHi() {
-    this.socket.emit('hi')
-  }
-
+  
   ngAfterViewInit() {
     this.socket.socketOn();
     this.chat$.subscribe(({ id: idRoom, chat }) => {

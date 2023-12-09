@@ -24,6 +24,7 @@ export class WebSocketService extends Socket {
       options: {}
     })
     this.chat$ = store.select('chat')
+    this.connectToRoom('')
   }
 
   socketOn() {

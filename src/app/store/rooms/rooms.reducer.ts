@@ -19,12 +19,12 @@ export const roomsReducer = createReducer(
             }
         ]
     }),
-    on(joinToRoom, (state, { idRoom }) => {
+    on(joinToRoom, (state, { idRoom, nameRoom }) => {
         return [
             ...state,
             {
                 chat: [],
-                name: `sala ${state.length}`,
+                name: nameRoom,
                 room: idRoom.toUpperCase(),
                 id: idRoom.toUpperCase()
             }
